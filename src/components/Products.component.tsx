@@ -5,7 +5,7 @@ export const Products: React.FC = () => {
         <>
             <h3>
                 {/* Welcome {userName} {email} */}
-                The Products:
+                The Products: // use map with filter and sort
             </h3>
         </>
     );

@@ -1,0 +1,64 @@
+{
+    "products": [
+        {
+            "id": "1",
+            "productName": "Cannondale",
+            "year": 2019,
+            "Model": "Caad12"
+        },
+        {
+            "id": "2",
+            "productName": "Marin",
+            "year": 2017,
+            "Model": "Gestalt 3"
+        },
+        {
+            "id": "3",
+            "productName": "Felt",
+            "year": 2018,
+            "Model": "Z75"
+        },
+        {
+            "id": "4",
+            "productName": "Specialized",
+            "year": 2022,
+            "Model": "Crux"
+        },
+        {
+            "id": "5",
+            "productName": "Felt",
+            "year": 2018,
+            "Model": "Z85"
+        },
+        {
+            "id": "6",
+            "productName": "Cannondale",
+            "year": 2022,
+            "Model": "caad13"
+        },
+        {
+            "id": "7",
+            "productName": "Marin",
+            "year": 2018,
+            "Model": "Nicasio"
+        },
+        {
+            "id": "8",
+            "productName": "Marin",
+            "year": 2022,
+            "Model": "Nicasio 2"
+        },
+        {
+            "id": "9",
+            "productName": "Rondo",
+            "year": 2023,
+            "Model": "HRVT"
+        },
+        {
+            "id": "10",
+            "productName": "Rondo",
+            "year": 2020,
+            "Model": "HRVT2000"
+        }
+    ]
+}
