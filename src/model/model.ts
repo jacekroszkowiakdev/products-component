@@ -1,6 +1,10 @@
+export interface ProductsData {
+    products: Product[];
+}
+
 export interface Product {
     id: number;
     productName: string;
     year: number;
-    Model: string;
+    model: string;
 }
