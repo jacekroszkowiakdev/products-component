@@ -10,7 +10,7 @@
             "id": "2",
             "productName": "Marin",
             "year": 2017,
-            "model": "Gestalt 3"
+            "model": "Gestalt3"
         },
         {
             "id": "3",
@@ -34,7 +34,7 @@
             "id": "6",
             "productName": "Cannondale",
             "year": 2022,
-            "model": "caad13"
+            "model": "Caad13"
         },
         {
             "id": "7",
@@ -46,7 +46,7 @@
             "id": "8",
             "productName": "Marin",
             "year": 2022,
-            "model": "Nicasio 2"
+            "model": "Nicasio2"
         },
         {
             "id": "9",
@@ -58,7 +58,7 @@
             "id": "10",
             "productName": "Rondo",
             "year": 2020,
-            "model": "HRVT2000"
+            "model": "Rut"
         }
     ]
 }
