@@ -77,8 +77,8 @@ export const Products: React.FC = () => {
                         <div className="product-image-container">
                             <img
                                 className="product-image"
-                                // src={require(`../images/${product.model}.jpg`)}
-                                alt={`image of ${product.productName} ${product.model}`}
+                                src={require(`../images/${product.model}.jpg`)}
+                                alt={`image of ${product.productName} ${product.model}.jpg`}
                             />
                         </div>
                         <strong>{product.productName}</strong>
