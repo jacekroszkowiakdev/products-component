@@ -40,34 +40,34 @@ export const Products: React.FC = () => {
         setSorted(sortedProducts);
     };
 
-    // const handleFilter = (productValues: keyof Product) => {
-    //     const filterCategory = productValues;
-    //     console.log("cat:", filterCategory);
-    //     const filteredProducts = [...products].filter((product) =>
-    //         product[productValues].toString().toLowerCase().includes("caad13")
-    //     );
-    //     console.log("filtered products: ", filteredProducts);
-    //     setFiltered(filteredProducts);
-    // };
-
-    const handleFilter = () => {
-        if (filterProperty === "") {
-            return;
-        }
-
-        const filteredProducts = [...products].filter(
-            (product) =>
-                product[filterProperty]
-                    .toString()
-                    .toLowerCase()
-                    .includes("cannondale") // Example filter condition
+    const handleFilter = (productValues: keyof Product) => {
+        const filterCategory = productValues;
+        console.log("cat:", filterCategory);
+        const filteredProducts = [...products].filter((product) =>
+            product[productValues].toString().toLowerCase().includes("caad13")
         );
+        console.log("filtered products: ", filteredProducts);
         setFiltered(filteredProducts);
     };
+
+    // const handleFilter = (filterProperty: keyof Product | "") => {
+    //     if (filterProperty === "") {
+    //         return;
+    //     }
+    //     const filteredProducts = [...products].filter(
+    //         (product) =>
+    //             product[filterProperty]
+    //                 .toString()
+    //                 .toLowerCase()
+    //                 .includes(filterProperty) // Example filter condition
+    //     );
+    //     setFiltered(filteredProducts);
+    // };
 
     const handleFilterPropertyChange = (
         event: React.ChangeEvent<HTMLSelectElement>
     ) => {
+        console.log(event.target.value);
         setFilterProperty(event.target.value as keyof Product);
     };
 
@@ -106,17 +106,18 @@ export const Products: React.FC = () => {
                     onChange={handleFilterPropertyChange}
                 >
                     <option value="">-- Select Property --</option>
-                    {filtered.map((option) => (
-                        // <option key={option.id} value={option.model}>
-                        //     {Object.values(option)}
-                        // </option>
-                        <option key={option.id} value={option.id}>
-                            {`${option.productName} - ${option.model} (${option.year})`}
-                        </option>
-                    ))}
+                    <option value="Cannondale">-- Cannondale --</option>
+                    <option value="Marin">-- Marin --</option>
+                    <option value="Felt">-- Felt --</option>
+                    <option value="Rondo">-- Rondo --</option>
+                    {/* {filtered.map((option) => {
+                        <option key={option.id} value={option.productName}>
+                            {option.productName}
+                        </option>;
+                    })} */}
                 </select>
             </label>
-            <button onClick={handleFilter}>Apply Filter</button>
+            <button onClick={handleFilter(filterProperty)}>Apply Filter</button>
 
             <div className="products-container">
                 {(sorted || filtered).map((product) => (
