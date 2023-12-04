@@ -23,19 +23,6 @@ const App: React.FC = () => {
             .catch((error) => console.error("Error posting data:", error));
     }, []);
 
-    // MOVE FETCH TO PRODUCTS COMPONENT
-    // useEffect(() => {
-    //     fetch("http://localhost:3000/products")
-    //         .then((response) => {
-    //             if (!response.ok) {
-    //                 throw new Error("Failed to fetch data");
-    //             }
-    //             return response.json();
-    //         })
-    //         .then((json) => console.log("data fetched:", json))
-    //         .catch((error) => console.error("Error fetching data:", error));
-    // });
-
     return (
         <>
             <div>

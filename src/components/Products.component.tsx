@@ -5,6 +5,9 @@ import { Product } from "../model/model";
 export const Products: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [sorted, setSorted] = useState<Product[]>([]);
+    const [filterProperty, setFilterProperty] = useState<keyof Product | "">(
+        ""
+    );
     const [filtered, setFiltered] = useState<Product[]>([]);
 
     // useEffect dependency array is empty so the effect runs only one to fetch the product data from the server
@@ -15,20 +18,20 @@ export const Products: React.FC = () => {
                     throw new Error("Failed to fetch data");
                 }
                 console.log("response.status =", response.status);
+                console.log("products: ", products);
                 return response.json();
             })
             .then((json) => {
                 setProducts(json),
                     console.log(
                         "products data fetched:",
+                        products,
                         Array.isArray(products)
-                        // response.status
                     );
             })
             .catch((error) => console.error("Error fetching data:", error));
     }, []);
 
-    // add dynamic sort values (sort by alpabetically by name, date, sort alphabetically by model)
     const handleSort = () => {
         const sortedProducts = products.toSorted((a, b) =>
             a.productName.localeCompare(b.productName)
@@ -37,12 +40,35 @@ export const Products: React.FC = () => {
         setSorted(sortedProducts);
     };
 
-    const handleFilter = (property: keyof Product) => {
-        const filteredProducts = [...products].filter((product) =>
-            product[property].toString().toLowerCase().includes("cannondale")
+    // const handleFilter = (productValues: keyof Product) => {
+    //     const filterCategory = productValues;
+    //     console.log("cat:", filterCategory);
+    //     const filteredProducts = [...products].filter((product) =>
+    //         product[productValues].toString().toLowerCase().includes("caad13")
+    //     );
+    //     console.log("filtered products: ", filteredProducts);
+    //     setFiltered(filteredProducts);
+    // };
+
+    const handleFilter = () => {
+        if (filterProperty === "") {
+            return;
+        }
+
+        const filteredProducts = [...products].filter(
+            (product) =>
+                product[filterProperty]
+                    .toString()
+                    .toLowerCase()
+                    .includes("cannondale") // Example filter condition
         );
-        console.log("filtered products: ", filteredProducts);
         setFiltered(filteredProducts);
+    };
+
+    const handleFilterPropertyChange = (
+        event: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+        setFilterProperty(event.target.value as keyof Product);
     };
 
     return (
@@ -61,24 +87,45 @@ export const Products: React.FC = () => {
                 )}
             </div>
 
-            <button onClick={handleSort}>sort products</button>
-            <button onClick={() => handleFilter("model")}>
+            <button onClick={handleSort}>sort products a - z</button>
+
+            {/* <button onClick={() => handleFilter("caad13")}>
                 filter products by Model
             </button>
-            <button onClick={() => handleFilter("productName")}>
+            <button onClick={() => handleFilter("cannondale")}>
                 filter products by Make
             </button>
             <button onClick={() => handleFilter("year")}>
                 filter products by year of production
-            </button>
-            <div>
+            </button> */}
+
+            <label>
+                Filter by Property:
+                <select
+                    value={filterProperty}
+                    onChange={handleFilterPropertyChange}
+                >
+                    <option value="">-- Select Property --</option>
+                    {filtered.map((option) => (
+                        // <option key={option.id} value={option.model}>
+                        //     {Object.values(option)}
+                        // </option>
+                        <option key={option.id} value={option.id}>
+                            {`${option.productName} - ${option.model} (${option.year})`}
+                        </option>
+                    ))}
+                </select>
+            </label>
+            <button onClick={handleFilter}>Apply Filter</button>
+
+            <div className="products-container">
                 {(sorted || filtered).map((product) => (
                     <div className="product-card" key={product.id}>
                         <div className="product-image-container">
                             <img
                                 className="product-image"
-                                src={require(`../images/${product.model}.jpg`)}
-                                alt={`image of ${product.productName} ${product.model}.jpg`}
+                                // src={require(`./images/${product.model}.jpg`)}
+                                alt={`image of ${product.productName} ${product.model}`}
                             />
                         </div>
                         <strong>{product.productName}</strong>
