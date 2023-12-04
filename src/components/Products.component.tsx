@@ -33,7 +33,7 @@ export const Products: React.FC = () => {
     }, []);
 
     const handleSort = () => {
-        const sortedProducts = products.toSorted((a, b) =>
+        const sortedProducts = products.toSorted((a: Product, b: Product) =>
             a.productName.localeCompare(b.productName)
         );
         console.log(sortedProducts);
@@ -124,7 +124,7 @@ export const Products: React.FC = () => {
                         <div className="product-image-container">
                             <img
                                 className="product-image"
-                                // src={require(`./images/${product.model}.jpg`)}
+                                src={`../../public/images/${product.model}.jpg`}
                                 alt={`image of ${product.productName} ${product.model}`}
                             />
                         </div>

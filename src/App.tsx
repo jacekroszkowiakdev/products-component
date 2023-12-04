@@ -25,12 +25,10 @@ const App: React.FC = () => {
 
     return (
         <>
-            <div>
-                <h2>Click the button to see the products</h2>
-                <button>to the products page</button>
-                <Home />
-                <Products />
-            </div>
+            <h2>Click the button to see the products</h2>
+            <button>to the products page</button>
+            <Home />
+            <Products />
         </>
     );
 };
