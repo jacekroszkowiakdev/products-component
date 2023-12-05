@@ -5,7 +5,7 @@ import { Product } from "../model/model";
 export const Products: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [sorted, setSorted] = useState<Product[]>([]);
-    const [filterProperty, setFilterProperty] = useState<keyof Product | "">(
+    const [filterProperty, setFilterProperty] = useState<"" | keyof Product>(
         ""
     );
     const [filtered, setFiltered] = useState<Product[]>([]);
@@ -40,31 +40,31 @@ export const Products: React.FC = () => {
         setSorted(sortedProducts);
     };
 
-    const handleFilter = (productValues: keyof Product) => {
-        const filterCategory = productValues;
-        console.log("cat:", filterCategory);
-        const filteredProducts = [...products].filter((product) =>
-            product[productValues].toString().toLowerCase().includes("caad13")
-        );
-        console.log("filtered products: ", filteredProducts);
-        setFiltered(filteredProducts);
-    };
-
-    // const handleFilter = (filterProperty: keyof Product | "") => {
-    //     if (filterProperty === "") {
-    //         return;
-    //     }
-    //     const filteredProducts = [...products].filter(
-    //         (product) =>
-    //             product[filterProperty]
-    //                 .toString()
-    //                 .toLowerCase()
-    //                 .includes(filterProperty) // Example filter condition
+    // FIXME: const handleFilter = (productValues: "" | keyof Product) => {
+    //     const filterCategory = productValues;
+    //     console.log("cat:", filterCategory);
+    //     const filteredProducts = [...products].filter((product) =>
+    //         product[productValues].toString().toLowerCase().includes("caad13")
     //     );
+    //     console.log("filtered products: ", filteredProducts);
     //     setFiltered(filteredProducts);
     // };
 
-    const handleFilterPropertyChange = (
+    const handleFilter = (filterProperty: keyof Product | "") => {
+        if (filterProperty === "") {
+            return;
+        }
+        const filteredProducts = [...products].filter(
+            (product) =>
+                product[filterProperty]
+                    .toString()
+                    .toLowerCase()
+                    .includes(filterProperty) // Example filter condition
+        );
+        setFiltered(filteredProducts);
+    };
+
+    TODO: const handleFilterPropertyChange = (
         event: React.ChangeEvent<HTMLSelectElement>
     ) => {
         console.log(event.target.value);
@@ -117,7 +117,9 @@ export const Products: React.FC = () => {
                     })} */}
                 </select>
             </label>
-            <button onClick={handleFilter(filterProperty)}>Apply Filter</button>
+            <button onClick={() => handleFilter(filterProperty)}>
+                Apply Filter
+            </button>
 
             <div className="products-container">
                 {(sorted || filtered).map((product) => (
