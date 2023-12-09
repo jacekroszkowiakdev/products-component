@@ -2,8 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Product } from "../model/model";
 
-export const Products: React.FC = () => {
-    const [products, setProducts] = useState<Product[]>([]);
+export const ProductList: React.FC<{ products: Product[] }> = ({
+    products,
+}) => {
     const [uniqueManufacturers, setUniqueManufacturers] = useState<Product[]>(
         []
     );
@@ -15,71 +16,58 @@ export const Products: React.FC = () => {
     );
     const [filtered, setFiltered] = useState<Product[]>([]);
 
-    // useEffect dependency array is empty so the effect runs only one to fetch the product data from the server
     useEffect(() => {
-        fetch("http://localhost:8089/products")
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Failed to fetch data");
-                }
-                console.log("response.status =", response.status);
-                return response.json();
-            })
-            .then((json) => {
-                setProducts(json);
-            })
-            .catch((error) => console.error("Error fetching data:", error));
-    }, []);
+        if (products) {
+            const uniqueManufacturers = getFilteredAndSortedProducts(
+                products,
+                (product) => product.productName,
+                "productName"
+            );
 
-    useEffect(() => {
-        const removeDupes = (
-            products: Product[],
-            key: (product: Product) => string
-        ) => {
-            const uniqueManufacturers = Array.from(
-                new Map(
-                    products.map((product) => [key(product), product])
-                ).values()
-            );
-            uniqueManufacturers.sort((a, b) =>
-                a.productName.localeCompare(b.productName)
-            );
             setUniqueManufacturers(uniqueManufacturers);
-        };
-        removeDupes(products, (product) => product.productName);
-    }, [products]);
 
-    useEffect(() => {
-        const removeDupes = (
-            products: Product[],
-            key: (product: Product) => string
-        ) => {
-            const uniqueModels = Array.from(
-                new Map(
-                    products.map((product) => [key(product), product])
-                ).values()
+            const uniqueModels = getFilteredAndSortedProducts(
+                products,
+                (product) => product.model,
+                "model"
             );
-            uniqueModels.sort((a, b) => a.model.localeCompare(b.model));
+
             setUniqueModels(uniqueModels);
-        };
-        removeDupes(products, (product) => product.model);
+
+            const uniqueYears = getFilteredAndSortedProducts(
+                products,
+                (product) => product.year,
+                "year"
+            );
+
+            setUniqueYears(uniqueYears);
+        }
     }, [products]);
 
-    useEffect(() => {
-        const removeDupes = (
-            products: Product[],
-            key: (product: Product) => number
-        ) => {
-            const uniqueYears = Array.from(
-                new Map(
-                    products.map((product) => [key(product), product])
-                ).values()
-            );
-            uniqueYears.sort((a, b) => a.year - b.year);
-            setUniqueYears(uniqueYears);
-        };
-        removeDupes(products, (product) => product.year);
-    }, [products]);
+    const getFilteredAndSortedProducts = (
+        products: Product[],
+        key: (product: Product) => string | number,
+        productKey: "productName" | "model" | "year"
+    ): Product[] => {
+        const uniqueProducts = Array.from(
+            new Map(products.map((product) => [key(product), product])).values()
+        );
+
+        uniqueProducts.sort((a, b) => {
+            if (typeof a[productKey] === "string") {
+                return (a[productKey] as string).localeCompare(
+                    b[productKey] as string
+                );
+            }
+
+            if (typeof a[productKey] === "number") {
+                return a.year - b.year;
+            }
+            return 1;
+        });
+
+        return uniqueProducts;
+    };
 
     const handleSort = () => {
         const sortedProducts = products.toSorted((a, b) =>
@@ -110,7 +98,6 @@ export const Products: React.FC = () => {
     const handleFilterPropertyChange = (
         event: React.ChangeEvent<HTMLSelectElement>
     ) => {
-        console.log(event.target.value);
         setFilterProperty(event.target.value as keyof Product);
     };
 
