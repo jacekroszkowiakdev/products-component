@@ -5,64 +5,47 @@ import { Product } from "../model/model";
 export const ProductList: React.FC<{ products: Product[] }> = ({
   products,
 }) => {
-  const [uniqueManufacturers, setUniqueManufacturers] = useState<Product[]>([]);
-  const [uniqueModels, setUniqueModels] = useState<Product[]>([]);
-  const [uniqueYears, setUniqueYears] = useState<Product[]>([]);
+  const [uniqueManufacturers, setUniqueManufacturers] = useState<string[]>([]);
+  const [uniqueModels, setUniqueModels] = useState<string[]>([]);
+  const [uniqueYears, setUniqueYears] = useState<number[]>([]);
   const [sorted, setSorted] = useState<Product[]>([]);
   const [filterProperty, setFilterProperty] = useState<"" | keyof Product>("");
   const [filtered, setFiltered] = useState<Product[]>([]);
 
   useEffect(() => {
-    const uniqueManufacturers = getFilteredAndSortedProducts(
-      products,
-      (product) => product.productName,
-      "productName"
-    );
+    if (products) {
+      const filteredAndSortedProductNames = filterUniqueValues<string>(
+        products,
+        "productName"
+      ).sort((a, b) => a.localeCompare(b));
 
-    setUniqueManufacturers(uniqueManufacturers);
+      setUniqueManufacturers(filteredAndSortedProductNames);
 
-    const uniqueModels = getFilteredAndSortedProducts(
-      products,
-      (product) => product.model,
-      "model"
-    );
+      const filteredAndSortedUniqueModels = filterUniqueValues<string>(
+        products,
+        "model"
+      ).sort((a, b) => a.localeCompare(b));
 
-    setUniqueModels(uniqueModels);
+      setUniqueModels(filteredAndSortedUniqueModels);
 
-    const uniqueYears = getFilteredAndSortedProducts(
-      products,
-      (product) => product.year,
-      "year"
-    );
+      const filteredAndSortedUniqueYears = filterUniqueValues<number>(
+        products,
+        "year"
+      ).sort((a, b) => a - b);
 
-    setUniqueYears(uniqueYears);
+      setUniqueYears(filteredAndSortedUniqueYears);
+    }
   }, [products]);
 
-  const getFilteredAndSortedProducts = (
+  function filterUniqueValues<T>(
     products: Product[],
-    key: (product: Product) => string | number,
-    productKey: "productName" | "model" | "year"
-  ): Product[] => {
-    const uniqueProducts = Array.from(
-      new Map(products.map((product) => [key(product), product])).values()
-    );
-
-    uniqueProducts.sort((a, b) => {
-      if (typeof productKey === "string") {
-        return (a[productKey] as string).localeCompare(b[productKey] as string);
-      }
-
-      if (typeof productKey === "number") {
-        return a.year - b.year;
-      }
-      return 1;
-    });
-
-    return uniqueProducts;
-  };
+    productKey: keyof Product
+  ): T[] {
+    return [...new Set(products.map((product) => product[productKey] as T))];
+  }
 
   const handleSort = () => {
-    const sortedProducts = products.toSorted((a, b) =>
+    const sortedProducts = products.sort((a, b) =>
       a.productName.localeCompare(b.productName)
     );
     setSorted(sortedProducts);
@@ -117,9 +100,9 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
       <label>
         <select value={filterProperty} onChange={handleFilterPropertyChange}>
           <option value="">-- Select Property --</option>
-          {uniqueModels.map((product) => (
-            <option key={product.id} value={product.model}>
-              {product.model}
+          {uniqueModels.map((model) => (
+            <option key={model} value={model}>
+              {model}
             </option>
           ))}
         </select>
@@ -131,9 +114,9 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
       <label>
         <select value={filterProperty} onChange={handleFilterPropertyChange}>
           <option value="">-- Select Property --</option>
-          {uniqueManufacturers.map((product) => (
-            <option key={product.id} value={product.productName}>
-              {product.productName}
+          {uniqueManufacturers.map((name) => (
+            <option key={name} value={name}>
+              {name}
             </option>
           ))}
         </select>
@@ -146,9 +129,9 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
       <label>
         <select value={filterProperty} onChange={handleFilterPropertyChange}>
           <option value="">-- Select Property --</option>
-          {uniqueYears.map((product) => (
-            <option key={product.id} value={product.year}>
-              {product.year}
+          {uniqueYears.map((year) => (
+            <option key={year} value={year}>
+              {year}
             </option>
           ))}
         </select>
