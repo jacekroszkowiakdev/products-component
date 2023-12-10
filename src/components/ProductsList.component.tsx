@@ -9,7 +9,9 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
         []
     );
     const [uniqueModels, setUniqueModels] = useState<Product[]>([]);
-    const [uniqueYears, setUniqueYears] = useState<Product[]>([]);
+    const [uniqueProductionYears, setuniqueProductionYears] = useState<
+        Product[]
+    >([]);
     const [sorted, setSorted] = useState<Product[]>([]);
     const [filterProperty, setFilterProperty] = useState<"" | keyof Product>(
         ""
@@ -34,13 +36,13 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
 
             setUniqueModels(uniqueModels);
 
-            const uniqueYears = getFilteredAndSortedProducts(
+            const uniqueProductionYears = getFilteredAndSortedProducts(
                 products,
                 (product) => product.year,
                 "year"
             );
 
-            setUniqueYears(uniqueYears);
+            setuniqueProductionYears(uniqueProductionYears);
         }
     }, [products]);
 
@@ -101,6 +103,12 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
         setFilterProperty(event.target.value as keyof Product);
     };
 
+    let productsToRender = [];
+
+    if (filtered.length !== 0 && sorted.length === 0) {
+        productsToRender = filtered;
+    } else productsToRender = sorted;
+
     return (
         <>
             <h3>The Products:</h3>
@@ -117,10 +125,8 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
                     </div>
                 )}
             </div>
-
             {/* conditionally render the sorted  products by clicking button: */}
             <button onClick={handleSort}>sort products a - z</button>
-
             {/* conditionally render the filtered products by clicking button: */}
             <button onClick={() => handleFilter(filterProperty)}>
                 Filter by model:
@@ -138,7 +144,6 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
                     ))}
                 </select>
             </label>
-
             <button onClick={() => handleFilter(filterProperty)}>
                 Filter by manufacturer
             </button>
@@ -155,7 +160,6 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
                     ))}
                 </select>
             </label>
-
             {/* //double tilde to transform property into Number */}
             <button onClick={() => handleFilter(~~filterProperty)}>
                 Filter by Year of production
@@ -166,7 +170,7 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
                     onChange={handleFilterPropertyChange}
                 >
                     <option value="">-- Select Property --</option>
-                    {uniqueYears.map((product) => (
+                    {uniqueProductionYears.map((product) => (
                         <option key={product.id} value={product.year}>
                             {product.year}
                         </option>
@@ -175,23 +179,7 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
             </label>
 
             <div className="products-container">
-                {filtered.map((product) => (
-                    <div className="product-card" key={product.id}>
-                        <div className="product-image-container">
-                            <img
-                                className="product-image"
-                                src={`../../public/images/${product.model}.jpg`}
-                                alt={`image of ${product.manufacturer} ${product.model}`}
-                            />
-                        </div>
-                        <strong>{product.manufacturer}</strong>
-                        <p>
-                            {product.model} {product.year}
-                        </p>
-                    </div>
-                ))}
-
-                {sorted.map((product) => (
+                {productsToRender.map((product) => (
                     <div className="product-card" key={product.id}>
                         <div className="product-image-container">
                             <img
