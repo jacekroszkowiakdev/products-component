@@ -4,7 +4,7 @@ export interface ProductsData {
 
 export interface Product {
     id: number;
-    productName: string;
+    manufacturer: string;
     year: number;
     model: string;
 }

@@ -20,8 +20,8 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
         if (products) {
             const uniqueManufacturers = getFilteredAndSortedProducts(
                 products,
-                (product) => product.productName,
-                "productName"
+                (product) => product.manufacturer,
+                "manufacturer"
             );
 
             setUniqueManufacturers(uniqueManufacturers);
@@ -47,7 +47,7 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
     const getFilteredAndSortedProducts = (
         products: Product[],
         key: (product: Product) => string | number,
-        productKey: "productName" | "model" | "year"
+        productKey: "manufacturer" | "model" | "year"
     ): Product[] => {
         const uniqueProducts = Array.from(
             new Map(products.map((product) => [key(product), product])).values()
@@ -71,7 +71,7 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
 
     const handleSort = () => {
         const sortedProducts = products.toSorted((a, b) =>
-            a.productName.localeCompare(b.productName)
+            a.manufacturer.localeCompare(b.manufacturer)
         );
         setSorted(sortedProducts);
         setFiltered([]);
@@ -110,7 +110,7 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
                     <div>
                         {products.map((product) => (
                             <div key={product.id}>
-                                <strong>{product.productName}</strong> -{" "}
+                                <strong>{product.manufacturer}</strong> -{" "}
                                 {product.model} ({product.year})
                             </div>
                         ))}
@@ -140,7 +140,7 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
             </label>
 
             <button onClick={() => handleFilter(filterProperty)}>
-                Filter Manufacturer
+                Filter by manufacturer
             </button>
             <label>
                 <select
@@ -149,8 +149,8 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
                 >
                     <option value="">-- Select Property --</option>
                     {uniqueManufacturers.map((product) => (
-                        <option key={product.id} value={product.productName}>
-                            {product.productName}
+                        <option key={product.id} value={product.manufacturer}>
+                            {product.manufacturer}
                         </option>
                     ))}
                 </select>
@@ -158,7 +158,7 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
 
             {/* //double tilde to transform property into Number */}
             <button onClick={() => handleFilter(~~filterProperty)}>
-                Filter Year {filterProperty}
+                Filter by Year of production
             </button>
             <label>
                 <select
@@ -181,10 +181,10 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
                             <img
                                 className="product-image"
                                 src={`../../public/images/${product.model}.jpg`}
-                                alt={`image of ${product.productName} ${product.model}`}
+                                alt={`image of ${product.manufacturer} ${product.model}`}
                             />
                         </div>
-                        <strong>{product.productName}</strong>
+                        <strong>{product.manufacturer}</strong>
                         <p>
                             {product.model} {product.year}
                         </p>
@@ -197,10 +197,10 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
                             <img
                                 className="product-image"
                                 src={`../../public/images/${product.model}.jpg`}
-                                alt={`image of ${product.productName} ${product.model}`}
+                                alt={`image of ${product.manufacturer} ${product.model}`}
                             />
                         </div>
-                        <strong>{product.productName}</strong>
+                        <strong>{product.manufacturer}</strong>
                         <p>
                             {product.model} {product.year}
                         </p>

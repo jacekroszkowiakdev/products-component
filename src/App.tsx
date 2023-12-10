@@ -1,7 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import { ProductList } from "./components/Products.component";
-import { Home } from "./components/Home.component";
+import { ProductList } from "./components/ProductsList.component";
 import data from "./db/db.json";
 import { Product } from "./model/model";
 
@@ -42,8 +41,6 @@ const App: React.FC = () => {
     return (
         <>
             <h2>Click the button to see the products</h2>
-            <button>to the products page</button>
-            <Home />
             <ProductList products={products} />
         </>
     );
