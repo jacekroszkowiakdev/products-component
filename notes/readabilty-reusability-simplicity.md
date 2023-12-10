@@ -35,7 +35,7 @@ ProductComponent.txs
 ```
 
 Better solution:
-(Typescript Generic)[https://www.typescriptlang.org/docs/handbook/2/generics.html]
+[Typescript Generic](https://www.typescriptlang.org/docs/handbook/2/generics.html)
 
 Advantages:
 - Pure function which can be reusable
