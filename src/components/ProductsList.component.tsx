@@ -193,7 +193,7 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
                             {product.model} {product.year}
                         </p>
                     </div>
-                ))}
+                ))}{" "}
             </div>
         </>
     );
