@@ -1,4 +1,5 @@
-**Managing branches**
+## Managing branches
+
 Branches purpose is to isolate your development work from other branches in the repository. For example, you could use a branch to develop a new feature or fix a bug.
 
 You always create a branch from an existing branch. Typically you create a branch from the default branch of your repository. You can then work on this new branch in isolation from changes that other people are making to the repository.
@@ -53,7 +54,7 @@ Then use `git switch <branch name>` or `git checkout <branch name>` to switch be
 
 Checkout to default branch and run `git branch -D <branch name>` to delete.
 
-# BRANCH NAMING:
+### BRANCH NAMING:
 
 **Basic Rules**
 
