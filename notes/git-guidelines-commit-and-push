@@ -1,0 +1,17 @@
+## GUIDELINES TO GIT COMMIT AND PUSH
+
+Committing and pushing changes in Git involve several best practices to ensure a clean and organized version history. Here are some guidelines and best practices:
+
+1. always check if you are in the right branch
+
+```bash
+    git branch
+```
+
+2. Review changes before committing with
+
+```bash
+    git diff
+```
+
+3.
