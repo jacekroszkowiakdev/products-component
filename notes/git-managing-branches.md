@@ -1,4 +1,4 @@
-## Managing branches
+## MANAGING BRANCHES
 
 Branches purpose is to isolate your development work from other branches in the repository. For example, you could use a branch to develop a new feature or fix a bug.
 
