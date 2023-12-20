@@ -19,7 +19,7 @@ The first commit in a Git repository is often referred to as the "initial commit
 As you make changes to your code, you stage those changes using `git add` and then create a new commit using `git commit`. Each commit contains a unique identifier and refers to the previous commit, forming a linked list of changes.
 
 ```bash
-   git add <file(s)>`or `git add .` (to add all files)
+   git add <file(s)>` or `git add .` (to add all files)
    git commit -m "Descriptive commit message"
 ```
 

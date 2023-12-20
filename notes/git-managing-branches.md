@@ -6,7 +6,7 @@ You always create a branch from an existing branch. Typically you create a branc
 
 Once you're satisfied with your work, you can create a pull request to merge your changes in the current branch into another branch.
 
-**1. Creating a Branch**
+**1.Creating a Branch**
 The first new branch is based on the default branch. In case that other branches exist - you can decide which to choose as base for new branch. To do that be sure to be checked out on a branch you want to use as base and then run `git branch <new branch>`. To checkout to a new one run `git checkout <new branch>`.
 There is a shorthand for creating and switching to new branch:
 
@@ -14,7 +14,7 @@ There is a shorthand for creating and switching to new branch:
 git checkout -b  <new branch>
 ```
 
-**2. Publishing a new branch**
+**2.Publishing a new branch**
 Be sure to add files, i.e. by adding all files `git add .` then create a commit with a comment `git commit -m "some comment"` and run `git push` command. In Git it is used to upload local repository content to a remote repository. It's an essential command in the collaborative nature of Git, allowing you to share your changes with others. The basic syntax of this command is as follows:
 
 ```bash
@@ -42,7 +42,7 @@ There is another useful way to push the current branch to the same name of the r
 git push -u origin HEAD
 ```
 
-**3. Switching between branches**
+**3.Switching between branches**
 To see what branch you're on run `git status`
 To list all local branches run `git branch`
 To see all remote branches run `git branch -r`
@@ -50,7 +50,7 @@ To see all local and remoter branches use `git branch -a`
 
 Then use `git switch <branch name>` or `git checkout <branch name>` to switch between branches.
 
-**4. Deleting branches**
+**4.Deleting branches**
 
 Checkout to default branch and run `git branch -D <branch name>` to delete.
 
