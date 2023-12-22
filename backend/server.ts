@@ -16,7 +16,6 @@ app.get("/api/products", (_req: Request, res: Response) => {
         // Read products from the JSON file
         const productsRawData = fs.readFileSync("./api/db/db.json", "utf-8");
         const products = JSON.parse(productsRawData);
-        console.log("Products served: ", products);
 
         res.json(products);
     } catch (error) {

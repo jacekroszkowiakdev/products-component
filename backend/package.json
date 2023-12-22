@@ -10,7 +10,6 @@
         "dev": "nodemon src/server.ts",
         "start": "npm run dev",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-        "preview": "vite preview",
         "server": "npx tsx server.ts"
     },
     "keywords": [],
