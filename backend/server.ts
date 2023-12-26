@@ -13,7 +13,6 @@ app.use(bodyParser.json());
 
 app.get("/api/products", (_req: Request, res: Response) => {
     try {
-        // Read products from the JSON file
         const productsRawData = fs.readFileSync("./api/db/db.json", "utf-8");
         const products = JSON.parse(productsRawData);
 
