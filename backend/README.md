@@ -14,12 +14,6 @@ Before running the server.ts file, make sure you have the following prerequisite
     npm install -g typescript
     ```
 
--   **TypeScript dependencies:** You can install them using the following command:
-
-    ```bash
-    npm install --save-dev typescript @types/node
-    ```
-
 -   **Project dependencies:** You can install them using the following command:
 
     ```bash
@@ -39,5 +33,5 @@ Before running the server.ts file, make sure you have the following prerequisite
 -   To run the server, use the following command:
 
     ```bash
-    npx tsx server.ts
+    npm run server
     ```
