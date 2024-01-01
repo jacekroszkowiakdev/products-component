@@ -5,12 +5,12 @@ import { Product } from "./model/model";
 
 const App: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
-    const port = import.meta.env.VITE_PORT;
+    const productsDBPort = import.meta.env.VITE_PRODUCTS_DB_PORT;
 
     useEffect(() => {
         async function fetchData() {
             const response = await fetch(
-                `http://localhost:${port}/api/products`
+                `http://localhost:${productsDBPort}/api/products`
             );
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
