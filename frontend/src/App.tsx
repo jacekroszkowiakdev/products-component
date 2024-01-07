@@ -5,7 +5,7 @@ import { Product } from "./model/model";
 
 const App: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
-    const productsDBPort = import.meta.env.VITE_PRODUCTS_DB_PORT;
+    const productsDBPort = import.meta.env.VITE_PRODUCTS_BACKEND_SERVER_PORT;
 
     useEffect(() => {
         async function fetchData() {
