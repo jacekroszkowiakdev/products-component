@@ -66,8 +66,18 @@ Follow the below collection of advices to keep your commits and changes well org
 4. Review changes before committing with
 
     ```bash
-    git diff
+    git diff <path to specific_file>
+    # this also works for directories
+    git diff <path to directory>
     ```
+
+    Alternatively in the VS Code left side toolbar click `Source Control` as shown below:
+
+    ![Screenshot](./images/SourceControl/SourceControl_step1.png)
+
+    and then click on the each file listed under `Changes` section to see and review the changes:
+
+    ![Screenshot](./images/SourceControl/SourceControl_step2.png)
 
 5. If you checked that you are on the correct branch and have checked the files and reviewed the changes - you are ready to commit
 
