@@ -1,19 +1,20 @@
 {
     "compilerOptions": {
-        "target": "ES2020",
+        "target": "ES2022",
         "useDefineForClassFields": true,
         "lib": ["ES2020", "DOM", "DOM.Iterable", "ES2023.Array"],
-        "module": "ESNext",
+        "module": "CommonJS",
+        "moduleResolution": "Node",
         "skipLibCheck": true,
-        "types": ["vite/client"],
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "forceConsistentCasingInFileNames": true,
 
         /* Bundler mode */
-        "moduleResolution": "bundler",
         "allowImportingTsExtensions": true,
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
-        "jsx": "react-jsx",
 
         /* Linting */
         "strict": true,
@@ -21,6 +22,9 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true
     },
-    "include": ["frontend/src"],
+    "ts-node": {
+        "esm": true,
+        "experimentalSpecifierResolution": "node"
+    },
     "references": [{ "path": "./tsconfig.node.json" }]
 }

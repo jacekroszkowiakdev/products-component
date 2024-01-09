@@ -1,5 +1,13 @@
-# Project created with React + TypeScript + Vite. Uses JSON Server to simulate an external Data Base
+## Project created with React + TypeScript + Vite.
 
-1. in project root directory run `npm i` to install all the dependencies
+### Configuration
 
-2. to start the project run `npm run dev` and **ctrl+click** to on the link to open in the browser
+1.  Create a .env file in the frontend folder and define the following variable:
+
+    ```env
+    VITE_PRODUCTS_BACKEND_SERVER_PORT=your_desired_port_number
+    ```
+
+2.  In project root directory run `npm i` to install all the dependencies.
+
+3.  To start the project run `npm run dev` and **ctrl+click** to on the link to open in the browser.
