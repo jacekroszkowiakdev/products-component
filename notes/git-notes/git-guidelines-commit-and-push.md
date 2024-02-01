@@ -73,11 +73,11 @@ Follow the below collection of advices to keep your commits and changes well org
 
     Alternatively in the VS Code left side toolbar click `Source Control` as shown below:
 
-    ![Screenshot](./images/SourceControl/SourceControl_step1.png)
+    ![VS Code Source Control Step 1](./images/SourceControl/SourceControl_step1.png)
 
     and then click on the each file listed under `Changes` section to see and review the changes:
 
-    ![Screenshot](./images/SourceControl/SourceControl_step2.png)
+    ![VS Code Source Control Step 2](./images/SourceControl/SourceControl_step2.png)
 
 5. If you checked that you are on the correct branch and have checked the files and reviewed the changes - you are ready to commit
 
