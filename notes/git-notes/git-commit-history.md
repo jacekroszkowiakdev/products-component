@@ -2,6 +2,8 @@
 
 In Git, a commit is a fundamental concept and represents a snapshot of your project at a specific point in time. It is a way to save changes to your codebase, creating a record of what was modified, added, or deleted. Each commit has a **unique identifier** called a **hash**, and it contains information such as the author, timestamp, and a reference to the changes made.
 
+The convention rules for creating explicit commit history can be found [here](https://www.conventionalcommits.org/en/v1.0.0/).
+
 The history of commits in Git forms a branching, tree-like structure. When you create a new commit, it points to the previous commit(s), forming a chain. This series of commits creates a history that can be visualized as a graph.
 
 **Overview of commit history in Git:**
