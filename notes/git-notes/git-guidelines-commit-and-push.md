@@ -22,54 +22,54 @@ Follow the below collection of advices to keep your commits and changes well org
 
 1. Always check if you are in the right branch
 
-    ```bash
+```bash
     git branch
-    ```
+```
 
 2. Add files
 
-    ```bash
+```bash
     # or all files
     git add .
     # or for specific file
     git add <file_name>
-    ```
+```
 
 3. Check if the files you want are supposed to be staged with
 
-    ```bash
+```bash
     git status
-    ```
+```
 
 4. Review changes before committing with
 
-    ```bash
+```bash
     git diff <path to specific_file>
     # this also works for directories
     git diff <path to directory>
-    ```
+```
 
-    Alternatively in the VS Code left side toolbar click `Source Control` as shown below:
+Alternatively in the VS Code left side toolbar click `Source Control` as shown below:
 
-    ![VS Code Source Control Step 1](./images/SourceControl/SourceControl_step1.png)
+![VS Code Source Control Step 1](./images/SourceControl/SourceControl_step1.png)
 
-    and then click on the each file listed under `Changes` section to see and review the changes:
+and then click on the each file listed under `Changes` section to see and review the changes:
 
-    ![VS Code Source Control Step 2](./images/SourceControl/SourceControl_step2.png)
+![VS Code Source Control Step 2](./images/SourceControl/SourceControl_step2.png)
 
 5. If you checked that you are on the correct branch and have checked the files and reviewed the changes - you are ready to commit
 
-    ```bash
+```bash
     git commit -m "clear and concise commit message here"
-    ```
+```
 
 ### PUSHING
 
 1. Always pull changes from the remote repository before pushing to avoid conflicts. To incorporate changes from the remote use
 
-    ```bash
+```bash
     git pull
-    ```
+```
 
 2. All steps and checks done? Then it is OK to `git push`. If it is your first push from the new brach then you need to add the remote repository and upstream with the following command
 
@@ -81,4 +81,4 @@ Follow the below collection of advices to keep your commits and changes well org
 
 3. Lastly got to Github and check the `Files changed` tab if the changes are exactly what you expect:
 
-    ![GitHub 'Files changed' tab](./images/Github/GitHub%20Files%20changed%20tab%20check.png)
+    ![GitHub 'Files changed' tab](./images/Github/GitHub_Files_changed_tab_check.png)
